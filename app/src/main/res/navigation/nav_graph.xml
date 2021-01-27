@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.amannegi.notes.screens.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_notesListFragment"
+            app:destination="@id/notesListFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/notesListFragment"
+        android:name="com.amannegi.notes.screens.NotesListFragment"
+        android:label="fragment_notes_list"
+        tools:layout="@layout/fragment_notes_list">
+        <action
+            android:id="@+id/action_notesListFragment_to_bottomSheetFragment"
+            app:destination="@id/bottomSheetFragment" />
+        <action
+            android:id="@+id/action_notesListFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/notesListFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_notesListFragment_to_accountInfoBottomSheetFragment"
+            app:destination="@id/accountInfoBottomSheetFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/bottomSheetFragment"
+        android:name="com.amannegi.notes.screens.NoteBottomSheetFragment"
+        android:label="BottomSheetFragment">
+        <argument
+            android:name="currentNote"
+            android:defaultValue="@null"
+            app:argType="com.amannegi.notes.database.Note"
+            app:nullable="true" />
+    </dialog>
+    <dialog
+        android:id="@+id/accountInfoBottomSheetFragment"
+        android:name="com.amannegi.notes.screens.AccountInfoBottomSheetFragment"
+        android:label="AccountInfoBottomSheetFragment" />
+</navigation>
